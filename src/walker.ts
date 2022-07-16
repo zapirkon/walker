@@ -1,4 +1,3 @@
-
 export class Walker {
   constructor(private readonly map: string[][]) { }
 
