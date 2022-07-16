@@ -28,5 +28,41 @@ describe('Crossroads', () => {
       const move = crossroad.move();
       expect(move).toStrictEqual(expected);
     });
+
+    it('turns', () => {
+      const step = new Step('+');
+      const direction = Direction.RIGHT;
+      const expected = new Step('D');
+      const crossroad = new Crossroad(
+        step,
+        direction,
+        {
+          UP: new Step(''),
+          DOWN: expected,
+          LEFT: new Step(''),
+          RIGHT: new Step('-'),
+        }
+      );
+      const move = crossroad.move();
+      expect(move).toStrictEqual(expected);
+    });
   });
+
+  test('fork', () => {
+    const step = new Step('+');
+    const direction = Direction.RIGHT;
+    const crossroad = new Crossroad(
+      step,
+      direction,
+      {
+        UP: new Step('|'),
+        DOWN: new Step('|'),
+        LEFT: new Step(''),
+        RIGHT: new Step('-'),
+      }
+    );
+    const move = crossroad.move();
+    expect(move).toStrictEqual(undefined);
+  });
+
 });
