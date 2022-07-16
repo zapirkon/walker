@@ -1,16 +1,21 @@
 import { Step } from "./step";
 
+export const Direction = {
+  UP: 'UP',
+  DOWN: 'DOWN',
+  LEFT: 'LEFT',
+  RIGHT: 'RIGHT',
+} as const;
+type Direction = typeof Direction[keyof typeof Direction];
+
 export class Crossroad {
   constructor(
     readonly current: Step,
-    readonly direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT',
-    readonly up: Step,
-    readonly down: Step,
-    readonly left: Step,
-    readonly right: Step,
+    readonly direction: Direction,
+    readonly choices: Record<Direction, Step>,
   ) { }
 
-  step() {
-    return this.direction;
+  move() {
+    return this.choices[this.direction];
   }
 }

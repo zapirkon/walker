@@ -1,4 +1,4 @@
-import { Crossroad } from "./crossroad";
+import { Crossroad, Direction } from "./crossroad";
 import { Step } from "./step";
 
 describe('Crossroads', () => {
@@ -13,14 +13,20 @@ describe('Crossroads', () => {
   describe('crossing the road', () => {
     it('continue in same direction', () => {
       const step = new Step('-');
-      const direction = 'RIGHT';
+      const direction = Direction.RIGHT;
       const expected = new Step('-');
       const crossroad = new Crossroad(
         step,
         direction,
-        new Step(''), new Step(''), new Step(''), expected);
-      const move = crossroad.step();
-      expect(move).toStrictEqual(direction);
+        {
+          UP: new Step(''),
+          DOWN: new Step(''),
+          LEFT: new Step(''),
+          RIGHT: expected,
+        }
+      );
+      const move = crossroad.move();
+      expect(move).toStrictEqual(expected);
     });
   });
 });
