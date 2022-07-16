@@ -1,0 +1,22 @@
+{
+  "editor.defaultFormatter": "vscode.typescript-language-features",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true,
+  },
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "typescript.format.semicolons": "insert",
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.rulers": [
+    80
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "package-lock.json": true,
+  }
+}
