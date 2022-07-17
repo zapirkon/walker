@@ -1,1 +1,1 @@
-console.log("The illiterate walker went to shool.");
+console.log("The walker prepares for a journey.");

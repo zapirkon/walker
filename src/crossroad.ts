@@ -11,7 +11,7 @@ export type Direction = typeof Direction[keyof typeof Direction];
 export class Crossroad {
   constructor(
     private readonly current: Step,
-    private readonly direction: Direction,
+    private readonly direction: Direction | undefined,
     private readonly choices: Record<Direction, Step>,
   ) { }
 
@@ -34,13 +34,17 @@ export class Crossroad {
 
   private start() {
     const directions = Object.entries(this.choices)
-      .map(n => n[1].canStepOn ? n[0] as Direction : undefined)
+      .map(n => n[1]?.canStepOn ? n[0] as Direction : undefined)
       .filter(Boolean);
-    if (directions.length === 1) return directions[0];
+    if (directions.length === 1) {
+      return directions[0];
+    }
   }
 
   private continue() {
-    if (this.choices[this.direction].canStepOn) return this.direction;
+    if (this.direction && this.choices[this.direction].canStepOn) {
+      return this.direction;
+    }
   }
 
   private turn() {
