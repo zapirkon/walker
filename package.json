@@ -9,7 +9,10 @@
     "prestart": "tsc",
     "start": "node dist/index.js",
     "watch": "ts-node-dev --respawn ./src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "test-unit": "jest --watchAll --testPathIgnorePatterns automated",
+    "test-auto": "jest automated"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
