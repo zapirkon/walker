@@ -35,4 +35,18 @@ describe('Walker', () => {
       letters: 'A'
     });
   });
+
+  it('knows', () => {
+    const walker = new Walker([
+      [new Step('@'), new Step('-'), new Step('+')],
+      [new Step(' '), new Step('B'), new Step('|')],
+      [new Step('C'), new Step('x'), new Step('A'), new Step('+')],
+      [new Step(' '), new Step(' '), new Step('+'), new Step('+')],
+    ]);
+    const path = walker.walk();
+    expect(path).toStrictEqual({
+      path: '@-+|A+++Ax',
+      letters: 'A'
+    });
+  });
 });
