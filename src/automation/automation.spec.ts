@@ -1,5 +1,5 @@
+import { Walker } from '../walker/walker';
 import { loadMap } from './loaders';
-import { Walker } from './walker';
 
 describe('automated tests', () => {
   it('walker walks a good path', () => {
