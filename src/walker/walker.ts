@@ -3,10 +3,16 @@ import { Step, StepType } from "./step";
 
 type Coordinates = [number, number];
 
+type MapSolution = { path: string; letters: string; };
+export type MapResult = MapSolution | { error: string; };
+export function isSolution(result: MapResult): result is MapSolution {
+  return 'path' in result;
+}
+
 export class Walker {
   constructor(private readonly map: Step[][]) { }
 
-  walk() {
+  walk(): MapResult {
     // find a single starting point
     let [location, ...multiStart] = this.map.flatMap((row, r) => row
       .map((node, c) => node.type === StepType.START ? [r, c] : undefined)

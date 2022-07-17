@@ -1,5 +1,5 @@
 import { Walker } from '../walker/walker';
-import { loadMap } from './loaders';
+import { expectedResult, loadMap, loadSolutions } from './loaders';
 
 describe('automated tests', () => {
   it('walker walks a good path', () => {
@@ -26,6 +26,15 @@ describe('automated tests', () => {
     const result = walker.walk();
     expect(result).toStrictEqual({
       error: 'Error',
+    });
+  });
+
+  it('automation', () => {
+    const all = loadSolutions('src/automation/solutions.txt');
+    all.forEach(solution => {
+      const walker = new Walker(solution.map);
+      const result = expectedResult(walker.walk());
+      expect(result).toStrictEqual(solution.expected);
     });
   });
 });

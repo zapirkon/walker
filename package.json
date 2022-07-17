@@ -12,8 +12,8 @@
     "test": "jest",
     "test-single": "jest --watchAll --silent=false -t",
     "test-watch": "jest --watchAll",
-    "test-unit": "jest --watchAll --testPathIgnorePatterns automated",
-    "test-auto": "jest automated"
+    "test-unit": "jest --watchAll --testPathIgnorePatterns automation",
+    "test-auto": "jest automation"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
