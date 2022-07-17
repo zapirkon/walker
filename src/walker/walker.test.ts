@@ -10,4 +10,29 @@ describe('Walker', () => {
       letters: ''
     });
   });
+
+  it('confused', () => {
+    const walker = new Walker([[new Step('@'), new Step('@')]]);
+    const path = walker.walk();
+    expect(path).toStrictEqual({
+      error: 'Error'
+    });
+  });
+
+  it('limbo', () => {
+    const walker = new Walker([[new Step('@'), new Step('*')]]);
+    const path = walker.walk();
+    expect(path).toStrictEqual({
+      error: 'Error'
+    });
+  });
+
+  it('reads', () => {
+    const walker = new Walker([[new Step('@'), new Step('A'), new Step('x')]]);
+    const path = walker.walk();
+    expect(path).toStrictEqual({
+      path: '@Ax',
+      letters: 'A'
+    });
+  });
 });

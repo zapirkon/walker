@@ -34,7 +34,7 @@ export class Crossroad {
 
   private start() {
     const directions = Object.entries(this.choices)
-      .map(n => n[1]?.canStepOn ? n[0] as Direction : undefined)
+      .map(n => n[1].canStepOn ? n[0] as Direction : undefined)
       .filter(Boolean);
     if (directions.length === 1) {
       return directions[0];

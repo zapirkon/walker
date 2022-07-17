@@ -45,7 +45,20 @@ export class Walker {
   }
 
   private collectLetters(path: Coordinates[]) {
-    return '';
+    const visited = new Set<string>();
+    return path.map(location => {
+      const step = this.stepOn(location);
+      if (step) {
+        const key = `${location[0]},${location[1]}`;
+        if (
+          step.type === StepType.LETTER &&
+          !visited.has(key)
+        ) {
+          visited.add(key);
+          return step.value;
+        }
+      }
+    }).join('');
   }
 
   private stepOn([row, column]: Coordinates) {
@@ -72,16 +85,10 @@ export class Walker {
   }
 
   private choices(location: Coordinates): Record<Direction, Step> {
-    return Object.values(Direction).reduce((steps, direction) => {
-      return {
-        ...steps,
-        [direction]: this.stepOn(this.lookAt(location, direction))
-      };
-    }, {
-      UP: new Step(''),
-      DOWN: new Step(''),
-      LEFT: new Step(''),
-      RIGHT: new Step(''),
-    });
+    const blank: Step = new Step('');
+    return Object.values(Direction).reduce((steps, direction) => ({
+      ...steps,
+      [direction]: this.stepOn(this.lookAt(location, direction)) ?? blank
+    }), { UP: blank, DOWN: blank, LEFT: blank, RIGHT: blank, });
   }
 }
